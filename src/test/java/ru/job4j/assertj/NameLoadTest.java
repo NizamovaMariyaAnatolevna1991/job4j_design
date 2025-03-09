@@ -29,5 +29,4 @@ class NameLoadTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("this name: %s does not contain a value".formatted("a="));
     }
-
 }
