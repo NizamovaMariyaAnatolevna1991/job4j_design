@@ -25,9 +25,7 @@ public class EvenNumbersIterator implements Iterator<Integer> {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        int value = data[index];
-        index++;
-        return value;
+        return data[index++];
     }
 
     public boolean ifEven(int number) {
