@@ -33,7 +33,7 @@ public class Generics {
     }
 
     public <T> void printObject(List<T> list) {
-        for (Iterator<T> iterator = list.iterator(); iterator.hasNext(); ) {
+        for (Iterator<T> iterator = list.iterator(); iterator.hasNext();) {
             T next = iterator.next();
             System.out.println("Текущий элемент: " + next);
         }
