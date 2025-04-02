@@ -30,7 +30,6 @@ public class Generics {
         /*
         generics.printLowerBoundedWildCard(third);
         */
-
     }
 
     public <T> void printObject(List<T> list) {
