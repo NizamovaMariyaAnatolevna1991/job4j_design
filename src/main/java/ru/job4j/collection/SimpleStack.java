@@ -8,19 +8,11 @@ public class SimpleStack<T> {
     private Node<T> head;
 
     public T pop() {
-        if (head == null) {
-            throw new NoSuchElementException();
-        }
-        Node<T> current = head;
-        T value = current.item;
-        head = head.next;
-        current.item = null;
-        current.next = null;
-        return value;
+        return linked.deleteFirst();
     }
 
     public void push(T value) {
-        head = new Node<>(value, head);
+        linked.addFirst(value);
     }
 
     private static class Node<T> {

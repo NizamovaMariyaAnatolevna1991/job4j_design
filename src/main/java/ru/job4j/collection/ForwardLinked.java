@@ -82,4 +82,10 @@ public class ForwardLinked<T> implements Iterable<T> {
             this.next = next;
         }
     }
+
+    public void addFirst(T value) {
+        head = new Node<>(value, head);
+        size--;
+        modCount--;
+    }
 }
