@@ -76,9 +76,6 @@ public class SimpleArrayList<T> implements SimpleList<T> {
                 if (!hasNext()) {
                     throw new NoSuchElementException("No more elements");
                 }
-                if (expectedModCount != modCount) {
-                    throw new ConcurrentModificationException("Collection was modified");
-                }
                 return container[cursor++];
             }
         };
