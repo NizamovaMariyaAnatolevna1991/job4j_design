@@ -11,24 +11,17 @@ public class SimpleArraySet<T> implements SimpleSet<T> {
 
     @Override
     public boolean add(T value) {
-        boolean exist = false;
-        for (T element : set) {
-            if (element == null ? value == null : element.equals(value)) {
-                exist = true;
-                break;
-            }
+        if (contains(value)) {
+            return false;
         }
-        if (!exist) {
-            set.add(value);
-            return true;
-        }
-        return false;
+        set.add(value);
+        return true;
     }
 
     @Override
     public boolean contains(T value) {
         for (T element : set) {
-            if (element == null ? value == null : element.equals(value)) {
+            if (areEqual(element, value)) {
                 return true;
             }
         }
@@ -38,5 +31,9 @@ public class SimpleArraySet<T> implements SimpleSet<T> {
     @Override
     public Iterator<T> iterator() {
         return set.iterator();
+    }
+
+    private boolean areEqual(T element, T value) {
+        return element == null ? value == null : element.equals(value);
     }
 }
