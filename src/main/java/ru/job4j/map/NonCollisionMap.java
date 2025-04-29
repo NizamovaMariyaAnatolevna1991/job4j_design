@@ -15,45 +15,44 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
 
     @Override
     public boolean put(K key, V value) {
+        boolean result = false;
         if ((float) count / capacity >= LOAD_FACTOR) {
             expand();
         }
 
         int index = indexFor(hash(Objects.hashCode(key)));
-        if (table[index] != null) {
-            return false;
+        if (table[index] == null) {
+            table[index] = new MapEntry<>(key, value);
+            count++;
+            modCount++;
+            result = true;
         }
-
-        table[index] = new MapEntry<>(key, value);
-        count++;
-        modCount++;
-        return true;
+        return result;
     }
 
     @Override
     public V get(K key) {
+        V result = null;
         int index = indexFor(hash(Objects.hashCode(key)));
         MapEntry<K, V> entry = table[index];
-        if (entry == null) {
-            return null;
+        if (entry != null && Objects.equals(entry.key, key)) {
+            result = entry.value;
         }
-        if (Objects.equals(entry.key, key)) {
-            return entry.value;
-        }
-        return null;
+        return result;
     }
 
     @Override
     public boolean remove(K key) {
+        boolean result = false;
         int index = indexFor(hash(Objects.hashCode(key)));
         MapEntry<K, V> entry = table[index];
         if (entry != null && Objects.equals(entry.key, key)) {
             table[index] = null;
             count--;
             modCount++;
-            return true;
+            result = true;
         }
-        return false;
+        return result;
     }
 
     @Override
