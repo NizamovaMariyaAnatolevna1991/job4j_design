@@ -19,11 +19,11 @@ public class LogFilter {
             return input.lines()
                     .filter(line -> {
                         String[] parts = line.split(" ");
-                        if (parts.length > 1) { // Проверяем, что строка содержит хотя бы два элемента
-                            String penultimateValue = parts[parts.length - 2]; // Берем предпоследний элемент
-                            return "404".equals(penultimateValue); // Проверяем, равен ли он "404"
+                        if (parts.length > 1) {
+                            String penultimateValue = parts[parts.length - 2];
+                            return "404".equals(penultimateValue);
                         }
-                        return false; // Если строка не содержит достаточно элементов, пропускаем её
+                        return false;
                     })
                     .collect(Collectors.toList());
         } catch (IOException e) {
