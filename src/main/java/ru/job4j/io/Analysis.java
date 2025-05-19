@@ -26,11 +26,11 @@ public class Analysis {
                 String status = parts[0];
                 String timestamp = parts[1];
 
-                if ((status.equals("400") || status.equals("500")) && startDowntime == null) {
+                if (("400".equals(status) || "500".equals(status)) && startDowntime == null) {
                     startDowntime = timestamp;
                 }
 
-                if (!status.equals("400") && !status.equals("500") && startDowntime != null) {
+                if (!"400".equals(status) && !"500".equals(status) && startDowntime != null) {
                     downtimeRanges.add(startDowntime + ";" + timestamp);
                     startDowntime = null;
                 }
