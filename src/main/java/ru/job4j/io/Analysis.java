@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Analysis {
-    public void unavailable(String source, String target) {
+    public static void unavailable(String source, String target) {
         List<String> downtimeRanges = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(source));
              PrintWriter writer = new PrintWriter(new FileOutputStream(target))) {
