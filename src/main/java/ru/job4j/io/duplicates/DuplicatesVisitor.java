@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
-    private  final Map<FileProperty, List<Path>> fileMap = new HashMap<>();
+    private final Map<FileProperty, List<Path>> fileMap = new HashMap<>();
 
     @Override
     public FileVisitResult visitFile(Path file,
@@ -28,7 +28,7 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     public void printDublicates() {
         for (Map.Entry<FileProperty, List<Path>> entry : fileMap.entrySet()) {
             List<Path> paths = entry.getValue();
-            if (paths.size() > 1 ) {
+            if (paths.size() > 1) {
                 System.out.println("Duplicate files found for: " + entry.getKey().getName());
                 paths.forEach(System.out::println);
             }
