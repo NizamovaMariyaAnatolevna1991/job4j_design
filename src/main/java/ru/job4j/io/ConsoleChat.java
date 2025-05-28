@@ -86,7 +86,7 @@ public class ConsoleChat {
     public static void main(String[] args) {
         String logFile = "data/chat_log.txt";
         String botAnswersFile = "data/bot_answers.txt";
-        ConsoleChat consoleChat = new ConsoleChat(logFile , botAnswersFile);
+        ConsoleChat consoleChat = new ConsoleChat(logFile, botAnswersFile);
         consoleChat.run();
     }
 }
