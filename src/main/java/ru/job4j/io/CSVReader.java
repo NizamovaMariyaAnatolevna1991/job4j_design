@@ -42,12 +42,6 @@ public class CSVReader {
 
         PrintStream output = null;
         try {
-            if ("stdout".equals(out)) {
-                output = System.out;
-            } else {
-                output = new PrintStream(new FileOutputStream(out));
-            }
-
             for (String line : lines) {
                 String[] values = line.split(delimiter);
                 StringJoiner joiner = new StringJoiner(delimiter);
@@ -55,8 +49,7 @@ public class CSVReader {
                 for (int index : columnIndices) {
                     joiner.add(values[index]);
                 }
-
-                output.println(joiner);
+                System.out.println(joiner);
             }
         } finally {
             if (output != null && !output.equals(System.out)) {
@@ -81,10 +74,6 @@ public class CSVReader {
 
         if (path.isEmpty() || delimiter.isEmpty() || out.isEmpty() || filter.isEmpty()) {
             throw new IllegalArgumentException("Все параметры должны быть указаны.");
-        }
-
-        if (!"-out".equals("stdout") && !new File(out).getParentFile().exists()) {
-            throw new IllegalArgumentException("Директория для выходного файла не существует.");
         }
 
         try {
