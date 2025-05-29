@@ -42,6 +42,12 @@ public class CSVReader {
 
         PrintStream output = null;
         try {
+            if ("stdout".equals(out)) {
+                output = System.out;
+            } else {
+                output = new PrintStream(new FileOutputStream(out));
+            }
+
             for (String line : lines) {
                 String[] values = line.split(delimiter);
                 StringJoiner joiner = new StringJoiner(delimiter);
@@ -49,7 +55,7 @@ public class CSVReader {
                 for (int index : columnIndices) {
                     joiner.add(values[index]);
                 }
-                System.out.println(joiner);
+                output.println(joiner);
             }
         } finally {
             if (output != null && !output.equals(System.out)) {
