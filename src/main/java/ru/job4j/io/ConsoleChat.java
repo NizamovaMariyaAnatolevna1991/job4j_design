@@ -40,13 +40,13 @@ public class ConsoleChat {
             String input = scanner.nextLine().trim();
             log.add("User: " + input);
 
-            if (input.equalsIgnoreCase(OUT)) {
+            if (OUT.equalsIgnoreCase(input)) {
                 log.add("Bot: Завершение работы.");
                 running = false;
-            } else if (input.equalsIgnoreCase(STOP)) {
+            } else if (STOP.equalsIgnoreCase(input)) {
                 isBotActive = false;
                 log.add("Bot: Я замолкаю.");
-            } else if (input.equalsIgnoreCase(CONTINUE)) {
+            } else if (CONTINUE.equalsIgnoreCase(input)) {
                 isBotActive = true;
                 log.add("Bot: Я снова с вами.");
             } else {
