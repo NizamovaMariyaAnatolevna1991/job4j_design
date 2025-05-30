@@ -17,7 +17,7 @@ public class EchoServer {
 
                     String msg = extractParameter(requestLine, "msg");
 
-                    if ("Bye".equals(msg)) {
+                    if ("Exit".equals(msg)) {
                         output.write("HTTP/1.1 200 OK\r\n\r\nServer is shutting down...".getBytes());
                         output.flush();
                         System.out.println("Получен сигнал завершения работы. Сервер останавливается...");
@@ -25,9 +25,18 @@ public class EchoServer {
                         break;
                     }
 
-                    output.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
-                    for (String string = input.readLine(); string != null && !string.isEmpty(); string = input.readLine()) {
-                        System.out.println(string);
+                    if ("Hello".equals(msg)) {
+                        output.write("HTTP/1.1 200 Hello\r\n\r\n".getBytes());
+                        output.write("Hello, dear friend.".getBytes());
+                    } else {
+                        output.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+                        output.write(msg.getBytes());
+                        output.flush();
+                        System.out.println("Отправлен ответ: " + msg);
+
+                        for (String string = input.readLine(); string != null && !string.isEmpty(); string = input.readLine()) {
+                            System.out.println(string);
+                        }
                     }
                     output.flush();
                 }
