@@ -12,13 +12,14 @@ public class EchoServer {
                 try (OutputStream output = socket.getOutputStream();
                      BufferedReader input = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
+                    output.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     String requestLine = input.readLine();
                     System.out.println("Получен запрос: " + requestLine);
 
                     String msg = extractParameter(requestLine, "msg");
 
                     if ("Exit".equals(msg)) {
-                        output.write("HTTP/1.1 200 OK\r\n\r\nServer is shutting down...".getBytes());
+                       // output.write("HTTP/1.1 200 OK\r\n\r\nServer is shutting down...".getBytes());
                         output.flush();
                         System.out.println("Получен сигнал завершения работы. Сервер останавливается...");
                         server.close();
@@ -29,7 +30,6 @@ public class EchoServer {
                         output.write("HTTP/1.1 200 Hello\r\n\r\n".getBytes());
                         output.write("Hello, dear friend.".getBytes());
                     } else {
-                        output.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                         output.write(msg.getBytes());
                         output.flush();
                         System.out.println("Отправлен ответ: " + msg);
