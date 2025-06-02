@@ -19,7 +19,6 @@ public class EchoServer {
                     String msg = extractParameter(requestLine, "msg");
 
                     if ("Exit".equals(msg)) {
-                       // output.write("HTTP/1.1 200 OK\r\n\r\nServer is shutting down...".getBytes());
                         output.flush();
                         System.out.println("Получен сигнал завершения работы. Сервер останавливается...");
                         server.close();
