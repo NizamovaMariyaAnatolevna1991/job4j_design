@@ -27,7 +27,6 @@ public class EchoServer {
 
                     if ("Hello".equals(msg)) {
                         output.write("HTTP/1.1 200 Hello\r\n\r\n".getBytes());
-                        output.write("Hello, dear friend.".getBytes());
                     } else {
                         output.write(msg.getBytes());
                         output.flush();
