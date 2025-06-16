@@ -83,9 +83,9 @@ public class PreparedStatementDemo {
     public static void main(String[] args) throws Exception {
         PreparedStatementDemo preparedStatementDemo = new PreparedStatementDemo();
         preparedStatementDemo.initConnection();
-        preparedStatementDemo.insert(new City(2,"Moskow", 2000000));
-        preparedStatementDemo.update(new City(2,"Rostov", 2000000));
-        System.out.println(preparedStatementDemo.update(new City(2,"Rostov", 2000000)));
+        preparedStatementDemo.insert(new City(2, "Moskow", 2000000));
+        preparedStatementDemo.update(new City(2, "Rostov", 2000000));
+        System.out.println(preparedStatementDemo.update(new City(2, "Rostov", 2000000)));
         preparedStatementDemo.delete(2);
         List<City> cities = preparedStatementDemo.findAll();
         Iterator<City> iterator = cities.iterator();
