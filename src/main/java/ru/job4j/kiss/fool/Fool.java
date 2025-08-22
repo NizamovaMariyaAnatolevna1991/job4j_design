@@ -24,7 +24,7 @@ public class Fool {
         System.out.println("Поздравляем! Ты дошел до 100!");
     }
 
-    private static String getExpectedAnswer(int number) {
+    static String getExpectedAnswer(int number) {
         if (number % 3 == 0 && number % 5 == 0) {
             return "FizzBuzz";
         } else if (number % 3 == 0) {
