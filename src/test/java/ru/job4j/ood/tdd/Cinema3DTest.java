@@ -50,7 +50,6 @@ public class Cinema3DTest {
         assertEquals("Форсаж", fastAndFurious.get(0).name());
     }
 
-
     @Test
     public void whenBuyOnInvalidRowThenGetException() {
         Account account = new AccountCinema();
