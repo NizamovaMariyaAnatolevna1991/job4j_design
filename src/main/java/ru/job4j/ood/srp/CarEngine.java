@@ -14,7 +14,6 @@ public class CarEngine {
 
     private double fuelConsumption;
 
-
     public void start() {
         System.out.println("Двигатель запущен.");
     }
@@ -23,11 +22,9 @@ public class CarEngine {
         return fuelConsumption;
     }
 
-
     public void logToConsole(String message) {
         System.out.println("[LOG] " + message);
     }
-
 
     public void saveToFile(String filename, String data) {
         try (var writer = new FileWriter(filename)) {

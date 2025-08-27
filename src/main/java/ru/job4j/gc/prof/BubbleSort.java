@@ -9,7 +9,6 @@ public class BubbleSort implements Sort {
         return true;
     }
 
-
     public void sort(int[] array) {
         int out, in;
         for (out = array.length - 1; out >= 1; out--) {
