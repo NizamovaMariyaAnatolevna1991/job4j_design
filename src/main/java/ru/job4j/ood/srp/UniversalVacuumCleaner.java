@@ -2,7 +2,7 @@ package ru.job4j.ood.srp;
 
 public class UniversalVacuumCleaner implements VacuumCleaner {
     /*
-    * Класс отвечает за 2 разные вещи
+     * Класс отвечает за 2 разные вещи
      */
 
     @Override
