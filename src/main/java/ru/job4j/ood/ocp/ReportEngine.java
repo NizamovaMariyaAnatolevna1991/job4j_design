@@ -8,13 +8,15 @@ package ru.job4j.ood.ocp;
  */
 
 public class ReportEngine {
-    String generate() {
+    public String generate(String type) {
         if ("accounting".equals(type)) {
-            // конвертация в USD
+            return "Name; Salary(USD);\nIvan; 1.5;";
         } else if ("hr".equals(type)) {
-            // сортировка
+            return "Name; Salary;\nIvan; 100;\nMaria; 300;";
         } else if ("it".equals(type)) {
-            // CSV
+            return "Name,Hired,Fired,Salary\nIvan,2025-01-01,2025-01-01,100.0";
+        } else {
+            return "Unknown report type";
         }
     }
 }
