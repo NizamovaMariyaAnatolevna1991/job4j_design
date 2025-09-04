@@ -29,26 +29,26 @@ class JsonReportTest {
 
         Report engine = new JsonReport(store, parser);
 
-        String expected = "[\n" +
-                "  {\n" +
-                "    \"name\": \"Ivan\",\n" +
-                "    \"hired\": \"" + parser.parse(now) + "\",\n" +
-                "    \"fired\": \"" + parser.parse(now) + "\",\n" +
-                "    \"salary\": 100.0\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"name\": \"Masha\",\n" +
-                "    \"hired\": \"" + parser.parse(now) + "\",\n" +
-                "    \"fired\": \"" + parser.parse(now) + "\",\n" +
-                "    \"salary\": 300.0\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"name\": \"Egor\",\n" +
-                "    \"hired\": \"" + parser.parse(now) + "\",\n" +
-                "    \"fired\": \"" + parser.parse(now) + "\",\n" +
-                "    \"salary\": 200.0\n" +
-                "  }\n" +
-                "]";
+        String expected = "[\n"
+                + "  {\n"
+                + "    \"name\": \"Ivan\",\n"
+                + "    \"hired\": \"" + parser.parse(now) + "\",\n"
+                + "    \"fired\": \"" + parser.parse(now) + "\",\n"
+                + "    \"salary\": 100.0\n"
+                + "  },\n"
+                + "  {\n"
+                + "    \"name\": \"Masha\",\n"
+                + "    \"hired\": \"" + parser.parse(now) + "\",\n"
+                + "    \"fired\": \"" + parser.parse(now) + "\",\n"
+                + "    \"salary\": 300.0\n"
+                + "  },\n"
+                + "  {\n"
+                + "    \"name\": \"Egor\",\n"
+                + "    \"hired\": \"" + parser.parse(now) + "\",\n"
+                + "    \"fired\": \"" + parser.parse(now) + "\",\n"
+                + "    \"salary\": 200.0\n"
+                + "  }\n"
+                + "]";
 
         assertThat(engine.generate(employee -> true)).isEqualTo(expected);
     }

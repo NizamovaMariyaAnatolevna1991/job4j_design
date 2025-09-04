@@ -29,27 +29,27 @@ class XmlReportTest {
 
         Report engine = new XmlReport(store, parser);
 
-        String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-                "<employees>\n" +
-                "    <employee>\n" +
-                "        <name>Ivan</name>\n" +
-                "        <hired>" + parser.parse(now) + "</hired>\n" +
-                "        <fired>" + parser.parse(now) + "</fired>\n" +
-                "        <salary>100.0</salary>\n" +
-                "    </employee>\n" +
-                "    <employee>\n" +
-                "        <name>Masha</name>\n" +
-                "        <hired>" + parser.parse(now) + "</hired>\n" +
-                "        <fired>" + parser.parse(now) + "</fired>\n" +
-                "        <salary>300.0</salary>\n" +
-                "    </employee>\n" +
-                "    <employee>\n" +
-                "        <name>Egor</name>\n" +
-                "        <hired>" + parser.parse(now) + "</hired>\n" +
-                "        <fired>" + parser.parse(now) + "</fired>\n" +
-                "        <salary>200.0</salary>\n" +
-                "    </employee>\n" +
-                "</employees>\n";
+        String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+                + "<employees>\n"
+                + "    <employee>\n"
+                + "        <name>Ivan</name>\n"
+                + "        <hired>" + parser.parse(now) + "</hired>\n"
+                + "        <fired>" + parser.parse(now) + "</fired>\n"
+                + "        <salary>100.0</salary>\n"
+                + "    </employee>\n"
+                + "    <employee>\n"
+                + "        <name>Masha</name>\n"
+                + "        <hired>" + parser.parse(now) + "</hired>\n"
+                + "        <fired>" + parser.parse(now) + "</fired>\n"
+                + "        <salary>300.0</salary>\n"
+                + "    </employee>\n"
+                + "    <employee>\n"
+                + "        <name>Egor</name>\n"
+                + "        <hired>" + parser.parse(now) + "</hired>\n"
+                + "        <fired>" + parser.parse(now) + "</fired>\n"
+                + "        <salary>200.0</salary>\n"
+                + "    </employee>\n"
+                + "</employees>\n";
 
         assertThat(engine.generate(employee -> true)).isEqualTo(expected);
     }

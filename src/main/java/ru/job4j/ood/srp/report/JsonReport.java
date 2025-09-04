@@ -25,7 +25,6 @@ public class JsonReport implements Report {
                 .create();
     }
 
-
     @Override
     public String generate(Predicate<Employee> filter) {
         List<Employee> employees = new ArrayList<>();
