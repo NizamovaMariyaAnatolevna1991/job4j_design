@@ -61,14 +61,18 @@ public class Food {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Food food = (Food) o;
-        return Objects.equals(name, food.name) &&
-                Objects.equals(createDate, food.createDate) &&
-                Objects.equals(expiryDate, food.expiryDate) &&
-                Double.compare(price, food.price) == 0 &&
-                Double.compare(discount, food.discount) == 0;
+        return Objects.equals(name, food.name)
+                && Objects.equals(createDate, food.createDate)
+                && Objects.equals(expiryDate, food.expiryDate)
+                && Double.compare(price, food.price) == 0
+                && Double.compare(discount, food.discount) == 0;
     }
 
     @Override
@@ -78,12 +82,12 @@ public class Food {
 
     @Override
     public String toString() {
-        return "Food{" +
-                "name='" + name + '\'' +
-                ", createDate=" + createDate +
-                ", expiryDate=" + expiryDate +
-                ", price=" + price +
-                ", discount=" + discount +
-                '}';
+        return "Food{"
+                + "name='" + name + '\''
+                + ", createDate=" + createDate
+                + ", expiryDate=" + expiryDate
+                + ", price=" + price
+                + ", discount=" + discount
+                + '}';
     }
 }

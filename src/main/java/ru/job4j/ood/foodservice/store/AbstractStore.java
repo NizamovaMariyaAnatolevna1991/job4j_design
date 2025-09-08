@@ -5,7 +5,6 @@ import ru.job4j.ood.foodservice.Food;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 abstract class AbstractStore implements Store {
@@ -18,7 +17,6 @@ abstract class AbstractStore implements Store {
             foods.add(food);
         }
     }
-
 
     /**
      * Метод возвращает все продукты в хранилище
