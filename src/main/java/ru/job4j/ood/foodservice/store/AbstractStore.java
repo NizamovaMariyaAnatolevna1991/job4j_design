@@ -9,6 +9,11 @@ import java.util.List;
 
 abstract class AbstractStore implements Store {
 
+    protected static final double FRESH_THRESHOLD = 0.75;
+    protected static final double DISCOUNT_THRESHOLD = 0.5;
+    protected static final double MIN_FRESHNESS_FOR_SALE = 0.25;
+    protected static final double DISCOUNT = 0.2;
+
     protected List<Food> foods = new ArrayList<>();
 
     @Override

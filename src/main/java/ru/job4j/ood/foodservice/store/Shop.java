@@ -6,10 +6,10 @@ public class Shop extends AbstractStore {
     @Override
     public boolean canAccept(Food food) {
         double freshness = getFreshness(food);
-        boolean inRange = freshness > 0.25 && freshness <= 0.75;
+        boolean inRange = freshness > MIN_FRESHNESS_FOR_SALE && freshness <= FRESH_THRESHOLD;
 
-        if (inRange && freshness < 0.5) {
-            food.setDiscount(0.2);
+        if (inRange && freshness < DISCOUNT_THRESHOLD) {
+            food.setDiscount(DISCOUNT);
         }
 
         return inRange;
