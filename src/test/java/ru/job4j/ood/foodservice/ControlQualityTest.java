@@ -7,15 +7,18 @@ import ru.job4j.ood.foodservice.store.Trash;
 import ru.job4j.ood.foodservice.store.Warehouse;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
 class ControlQualityTest {
 
+    private static final double DISCOUNT = 0.2;
+
     @Test
     void whenDistributeThenCorrectStorage() {
+        LocalDateTime now = LocalDateTime.now();
+
         Warehouse warehouse = new Warehouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
@@ -23,12 +26,7 @@ class ControlQualityTest {
         List<Store> stores = List.of(warehouse, shop, trash);
         ControlQuality control = new ControlQuality(stores);
 
-        Food fresh = new Food(
-                "Milk",
-                LocalDateTime.of(2025, 9, 7, 10, 0),
-                LocalDateTime.of(2025, 9, 15, 10, 0),
-                100.0
-        );
+        Food fresh = new Food("Milk", now.minusDays(1), now.plusDays(30), 100.0);
 
         control.distribute(fresh);
 
@@ -40,6 +38,7 @@ class ControlQualityTest {
 
     @Test
     void whenDistributeThenCorrectStorageStore() {
+        LocalDateTime now = LocalDateTime.now();
         Warehouse warehouse = new Warehouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
@@ -48,31 +47,16 @@ class ControlQualityTest {
 
         ControlQuality control = new ControlQuality(stores);
 
-        Food fresh = new Food(
-                "Milk",
-                LocalDateTime.of(2025, 9, 8, 10, 0),
-                LocalDateTime.of(2025, 9, 15, 10, 0),
-                100.0
-        );
+        Food fresh = new Food("Milk", now.minusDays(1), now.plusDays(30), 100.0);
         control.distribute(fresh);
         assertThat(warehouse.getFoods()).contains(fresh);
 
-        Food almost = new Food(
-                "Yogurt",
-                LocalDateTime.of(2025, 9, 1, 10, 0),
-                LocalDateTime.of(2025, 9, 12, 10, 0),
-                50.0
-        );
+        Food almost = new Food("Yogurt", now.minusDays(15), now.plusDays(5), 50.0);
         control.distribute(almost);
         assertThat(shop.getFoods()).contains(almost);
         assertThat(almost.getDiscount()).isEqualTo(0.2);
 
-        Food expired = new Food(
-                "Cheese",
-                LocalDateTime.of(2025, 9, 1, 10, 0),
-                LocalDateTime.of(2025, 9, 5, 10, 0),
-                0.0
-        );
+        Food expired = new Food("Cheese", now.minusDays(10), now.minusDays(1), 30.0);
         control.distribute(expired);
         assertThat(trash.getFoods()).contains(expired);
     }

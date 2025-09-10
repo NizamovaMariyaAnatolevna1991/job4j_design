@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class Trash extends AbstractStore {
     @Override
-    public boolean canAccept(Food food) {
-        return food.getExpiryDate().isBefore(LocalDateTime.now());
+    public boolean canAccept(Food food, LocalDateTime currentDate) {
+        return food.getExpiryDate().isBefore(currentDate);
     }
 }

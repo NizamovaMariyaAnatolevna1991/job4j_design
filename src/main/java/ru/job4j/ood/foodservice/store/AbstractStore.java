@@ -18,7 +18,7 @@ abstract class AbstractStore implements Store {
 
     @Override
     public void accept(Food food) {
-        if (canAccept(food)) {
+        if (canAccept(food, LocalDateTime.now())) {
             foods.add(food);
         }
     }
@@ -27,9 +27,9 @@ abstract class AbstractStore implements Store {
      * Метод возвращает все продукты в хранилище
      */
 
-    protected double getFreshness(Food food) {
+    protected double getFreshness(Food food, LocalDateTime currentDate) {
         long totalDays = ChronoUnit.DAYS.between(food.getCreateDate(), food.getExpiryDate());
-        long elapsedDays = ChronoUnit.DAYS.between(food.getCreateDate(), LocalDateTime.now());
+        long elapsedDays = ChronoUnit.DAYS.between(food.getCreateDate(), currentDate);
 
         if (totalDays == 0) {
             return elapsedDays > 0 ? 0.0 : 1.0;
