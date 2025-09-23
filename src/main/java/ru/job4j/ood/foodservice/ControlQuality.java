@@ -13,12 +13,27 @@ public class ControlQuality {
         this.stores = new ArrayList<>(stores);
     }
 
-    public void distribute(Food food) {
+    public void distribute(Food food, LocalDateTime currentDate) {
         for (Store store : stores) {
-            if (store.canAccept(food, LocalDateTime.now())) {
+            if (store.canAccept(food, currentDate)) {
                 store.accept(food);
                 return;
             }
+        }
+    }
+
+    /**
+     * Перераспределяет все продукты заново
+     */
+    public void resort(LocalDateTime date) {
+        List<Food> allFoods = new ArrayList<>();
+        for (Store store : stores) {
+            allFoods.addAll(store.getFoods());
+            store.clear();
+        }
+
+        for (Food food : allFoods) {
+            distribute(food, date);
         }
     }
 }

@@ -28,7 +28,7 @@ class ControlQualityTest {
 
         Food fresh = new Food("Milk", now.minusDays(1), now.plusDays(30), 100.0);
 
-        control.distribute(fresh);
+        control.distribute(fresh, now);
 
         List<Food> foods = warehouse.getFoods();
         System.out.println("В хранилище: " + foods);
@@ -48,16 +48,43 @@ class ControlQualityTest {
         ControlQuality control = new ControlQuality(stores);
 
         Food fresh = new Food("Milk", now.minusDays(1), now.plusDays(30), 100.0);
-        control.distribute(fresh);
+        control.distribute(fresh, now);
         assertThat(warehouse.getFoods()).contains(fresh);
 
         Food almost = new Food("Yogurt", now.minusDays(15), now.plusDays(5), 50.0);
-        control.distribute(almost);
+        control.distribute(almost, now);
         assertThat(shop.getFoods()).contains(almost);
         assertThat(almost.getDiscount()).isEqualTo(0.2);
 
         Food expired = new Food("Cheese", now.minusDays(10), now.minusDays(1), 30.0);
-        control.distribute(expired);
+        control.distribute(expired, now);
         assertThat(trash.getFoods()).contains(expired);
+    }
+
+    @Test
+    void resort() {
+        LocalDateTime now = LocalDateTime.now();
+
+        Warehouse warehouse = new Warehouse();
+        Shop shop = new Shop();
+        Trash trash = new Trash();
+
+        List<Store> stores = List.of(warehouse, shop, trash);
+
+        ControlQuality control = new ControlQuality(stores);
+
+        Food milk = new Food("Milk", now.minusDays(1), now.plusDays(15), 100.0);
+
+        control.distribute(milk, now);
+        assertThat(warehouse.getFoods()).contains(milk);
+        assertThat(shop.getFoods()).doesNotContain(milk);
+
+        LocalDateTime future = now.plusDays(90);
+
+        control.resort(future);
+
+        assertThat(warehouse.getFoods()).doesNotContain(milk);
+        assertThat(shop.getFoods()).doesNotContain(milk);
+        assertThat(trash.getFoods()).contains(milk);
     }
 }

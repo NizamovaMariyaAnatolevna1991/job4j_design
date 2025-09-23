@@ -18,9 +18,7 @@ abstract class AbstractStore implements Store {
 
     @Override
     public void accept(Food food) {
-        if (canAccept(food, LocalDateTime.now())) {
-            foods.add(food);
-        }
+        foods.add(food);
     }
 
     /**

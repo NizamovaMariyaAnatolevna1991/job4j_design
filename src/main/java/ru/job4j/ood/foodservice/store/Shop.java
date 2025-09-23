@@ -13,7 +13,6 @@ public class Shop extends AbstractStore {
         if (inRange && freshness < DISCOUNT_THRESHOLD) {
             food.setDiscount(DISCOUNT);
         }
-
         return inRange;
     }
 }
