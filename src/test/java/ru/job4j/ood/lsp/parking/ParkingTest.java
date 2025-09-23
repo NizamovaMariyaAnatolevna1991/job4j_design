@@ -93,10 +93,8 @@ class ParkingTest {
 
         Vehicle truck = new Truck("T999", 2); // хочет 2 места
 
-        // when
         boolean parked = parking.park(truck);
 
-        // then
         assertThat(parked).isTrue(); // может встать на [4][5]
         assertThat(parking.getAvailablePlaces()).isEqualTo(1);
     }
@@ -106,7 +104,6 @@ class ParkingTest {
         Parking parking = new SimpleParking(5, 0);
         parking.park(new Car("C001")); // место 1
         parking.park(new Car("C002")); // место 3
-
 
         Vehicle bigTruck = new Truck("T999", 3);
         assertThat(parking.park(bigTruck)).isTrue();
