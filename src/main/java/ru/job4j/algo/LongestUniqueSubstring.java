@@ -34,6 +34,4 @@ public class LongestUniqueSubstring {
 
         return str.substring(bestStart, bestStart + maxLenght);
     }
-
-
 }
