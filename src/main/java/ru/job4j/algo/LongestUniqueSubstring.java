@@ -26,9 +26,10 @@ public class LongestUniqueSubstring {
             seen.add(ch);
 
             int currentLenght = right - left + 1;
-            if (currentLenght > maxLenght) ;
-            maxLenght = currentLenght;
-            bestStart = left;
+            if (currentLenght > maxLenght) {
+                maxLenght = currentLenght;
+                bestStart = left;
+            }
         }
 
         return str.substring(bestStart, bestStart + maxLenght);
