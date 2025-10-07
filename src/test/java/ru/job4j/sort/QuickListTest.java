@@ -47,6 +47,24 @@ class QuickListTest {
         assertThat(list).containsExactly(10, 8, 1, 1, 0, -2, -8);
     }
 
+    @Test
+    void whenListIsEmptyThenDoNothing() {
+        Comparator<User> comparator = Comparator.comparingInt(User::getId);
+        List<User> listUser = new ArrayList<>();
+        QuickList.quickSort(listUser, comparator);
+        assertThat(listUser).isEmpty();
+    }
+
+    @Test
+    void whenListHasDuplicatesThenSortedCorrectly() {
+        List<Integer> list = new ArrayList<>(List.of(3, 1, 4, 1, 5, 9, 2, 5));
+        List<Integer> expected = List.of(1, 1, 2, 3, 4, 5, 5, 9);
+
+        QuickList.quickSort(list, Integer::compareTo);
+
+        assertThat(list).isEqualTo(expected);
+    }
+
     private static class User {
         private Integer id;
         private String name;
