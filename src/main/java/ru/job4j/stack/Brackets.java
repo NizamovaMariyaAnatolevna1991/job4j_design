@@ -6,9 +6,13 @@ public class Brackets {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (char c : s.toCharArray()) {
-            if (c == '(' || c == '{' || c == '[') {
+            if (c == '('
+                    || c == '{'
+                    || c == '[') {
                 stack.push(c);
-            } else if (c == ')' || c == '}' || c == ']') {
+            } else if (c == ')'
+                    || c == '}'
+                    || c == ']') {
                 if (stack.isEmpty()) {
                     return false;
                 }
@@ -17,14 +21,13 @@ public class Brackets {
                     return false;
                 }
             }
-
         }
         return stack.isEmpty();
     }
 
     private boolean isMatching(char open, char close) {
-        return (open == '(' && close == ')') ||
-                (open == '{' && close == '}') ||
-                (open == '[' && close == ']');
+        return (open == '(' && close == ')')
+                || (open == '{' && close == '}')
+                || (open == '[' && close == ']');
     }
 }
