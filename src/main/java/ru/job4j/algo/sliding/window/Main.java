@@ -39,7 +39,6 @@ public class Main {
         };
     }
 
-
     public static void main(String[] args) {
         List intervals = new ArrayList<>();
         intervals.add(new Interval(1, 4));
