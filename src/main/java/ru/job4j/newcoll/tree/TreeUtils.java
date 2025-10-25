@@ -160,7 +160,6 @@ public class TreeUtils<T> {
                 return Optional.of(current);
             }
 
-
             for (Node<T> child : current.getChildren()) {
                 nodeStack.push(child);
                 parentStack.push(current);
