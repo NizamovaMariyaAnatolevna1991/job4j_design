@@ -62,7 +62,7 @@ class BinarySearchTreeTest {
     @Test
     void whenAddMinimumIsNotEndThenOk() {
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        for (int element : new int[]{4, 2, 6, 3, 5, 7 }) {
+        for (int element : new int[]{4, 2, 6, 3, 5, 7}) {
             tree.put(element);
         }
         assertThat(tree.minimum()).isEqualTo(2);
@@ -96,5 +96,47 @@ class BinarySearchTreeTest {
         }
         assertThat(tree.inPostOrder()).hasSize(7)
                 .containsExactly(1, 3, 2, 5, 7, 6, 4);
+    }
+
+    @Test
+    void whenRemoveListThenOk() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        for (int element : new int[]{2, 1, 10, 6, 14, 4, 8, 12, 16, 11, 9, 13, 15, 17, 3, 5, 7}) {
+            tree.put(element);
+        }
+        tree.remove(3);
+        assertThat(tree.contains(3)).isFalse();
+    }
+
+    @Test
+    void whenRemoveNodeHasLeftThenOk() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        for (int element : new int[]{2, 1, 10, 6, 14, 4, 8, 12, 16, 9, 13, 15, 3, 5, 7}) {
+            tree.put(element);
+        }
+        tree.remove(16);
+        assertThat(tree.contains(16)).isFalse();
+        assertThat(tree.maximum()).isEqualTo(15);
+    }
+
+    @Test
+    void whenRemoveNodeHasRightThenOk() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        for (int element : new int[]{2, 1, 10, 6, 14, 4, 8, 12, 16, 9, 13, 15, 3, 5, 7}) {
+            tree.put(element);
+        }
+        tree.remove(12);
+        assertThat(tree.contains(12)).isFalse();
+    }
+
+    @Test
+    void whenRemoveNodeHasRightAndLeftThenOk() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        for (int element : new int[]{10, 6, 14, 4, 8, 12, 16, 9, 13, 15, 3, 5, 7}) {
+            tree.put(element);
+        }
+        tree.remove(4);
+        assertThat(tree.contains(4)).isFalse();
+        assertThat(tree.minimum()).isEqualTo(3);
     }
 }
