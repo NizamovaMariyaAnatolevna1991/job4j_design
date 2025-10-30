@@ -3,7 +3,7 @@ package ru.job4j.collection.binarytree;
 public class Main {
     public static void main(String[] args) {
         BinarySearchTree<Integer> bst = new BinarySearchTree<>();
-        int[] array = new int[]{ 10, 6, 14, 4, 8, 12, 16, 11, 9, 13, 15, 3, 5, 7};
+        int[] array = new int[]{10, 6, 14, 4, 8, 12, 16, 11, 9, 13, 15, 3, 5, 7};
         for (int i : array) {
             bst.put(i);
         }
