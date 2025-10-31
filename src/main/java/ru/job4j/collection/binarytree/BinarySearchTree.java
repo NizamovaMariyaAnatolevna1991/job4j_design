@@ -40,9 +40,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public boolean contains(T key) {
-
+        if (key == null) {
+            return false;
+        }
         return find(root, key) != null;
-
     }
 
     private Node find(Node node, T key) {
@@ -53,7 +54,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         int cmp = key.compareTo(node.key);
 
         if (cmp == 0) {
-            return node; // найдено
+            return node;
         } else if (cmp < 0) {
             return find(node.left, key);
         } else {
@@ -200,6 +201,24 @@ public class BinarySearchTree<T extends Comparable<T>> {
             node.right = delNode.right;
         }
         return node;
+    }
+
+    public void clear() {
+        Node node = root;
+        clear(node);
+        root = null;
+    }
+
+    private void clear(Node first) {
+        if (first != null) {
+
+            clear(first.left);
+            clear(first.right);
+
+            first.key = null;
+            first.left = null;
+            first.right = null;
+        }
     }
 
     @Override

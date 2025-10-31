@@ -139,4 +139,25 @@ class BinarySearchTreeTest {
         assertThat(tree.contains(4)).isFalse();
         assertThat(tree.minimum()).isEqualTo(3);
     }
+
+    @Test
+    void whenClearThenEmptyTheTree() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        for (int element : new int[]{4, 2, 6, 3, 5, 7, 1}) {
+            tree.put(element);
+        }
+
+        assertThat(tree.inSymmetricalOrder()).hasSize(7)
+                .containsExactly(1, 2, 3, 4, 5, 6, 7);
+
+        tree.clear();
+
+        assertThat(tree.contains(1)).isFalse();
+        assertThat(tree.contains(2)).isFalse();
+        assertThat(tree.contains(3)).isFalse();
+        assertThat(tree.contains(4)).isFalse();
+        assertThat(tree.contains(5)).isFalse();
+        assertThat(tree.contains(6)).isFalse();
+        assertThat(tree.contains(7)).isFalse();
+    }
 }
