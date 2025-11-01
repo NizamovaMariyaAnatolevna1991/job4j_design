@@ -38,8 +38,8 @@ public class Main {
                 if (currentOverlap > maxOverlap) {
                     shouldUpdate = true;
                 } else if (currentOverlap == maxOverlap && bestStart != -1) {
-                    if (currentLength < bestLength ||
-                            (currentLength == bestLength && currentStart < bestStart)) {
+                    if (currentLength < bestLength
+                            || (currentLength == bestLength && currentStart < bestStart)) {
                         shouldUpdate = true;
                     }
                 } else if (bestStart == -1) {
