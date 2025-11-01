@@ -7,36 +7,54 @@ import java.util.PriorityQueue;
 
 public class Main {
 
-    public static int[] findMaxOverlapInterval(List intervals) {
+    public static int[] findMaxOverlapInterval(List<Interval> intervals) {
         if (intervals.isEmpty()) {
             return new int[]{-1, -1};
         }
 
-        List<Interval> sorted = new ArrayList<>(intervals);
-        sorted.sort(Comparator.comparingInt(i -> i.start));
+        intervals.sort(Comparator.comparingInt(i -> i.start));
 
-        var activeIntervals = new PriorityQueue<Interval>(Comparator.comparingInt(i -> i.end));
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
         int maxOverlap = 0;
-        int maxStart = -1;
-        int maxEnd = -1;
+        int bestStart = -1;
+        int bestEnd = -1;
 
-        for (Interval current : sorted) {
-            while (!activeIntervals.isEmpty() && activeIntervals.peek().end < current.start) {
-                activeIntervals.poll();
+        for (Interval interval : intervals) {
+            while (!minHeap.isEmpty() && minHeap.peek() <= interval.start) {
+                minHeap.poll();
             }
 
-            activeIntervals.add(current);
+            minHeap.offer(interval.end);
 
-            if (activeIntervals.size() > maxOverlap) {
-                maxOverlap = activeIntervals.size();
-                maxStart = current.start;
-                maxEnd = current.start;
+            int currentOverlap = minHeap.size();
+            int currentEnd = minHeap.peek();
+            int currentStart = interval.start;
+
+            if (currentStart < currentEnd) {
+                int currentLength = currentEnd - currentStart;
+                int bestLength = (bestStart == -1) ? -1 : (bestEnd - bestStart);
+
+                boolean shouldUpdate = false;
+                if (currentOverlap > maxOverlap) {
+                    shouldUpdate = true;
+                } else if (currentOverlap == maxOverlap && bestStart != -1) {
+                    if (currentLength < bestLength ||
+                            (currentLength == bestLength && currentStart < bestStart)) {
+                        shouldUpdate = true;
+                    }
+                } else if (bestStart == -1) {
+                    shouldUpdate = true;
+                }
+
+                if (shouldUpdate) {
+                    maxOverlap = currentOverlap;
+                    bestStart = currentStart;
+                    bestEnd = currentEnd;
+                }
             }
         }
 
-        return new int[]{
-                maxStart, maxEnd
-        };
+        return new int[]{bestStart, bestEnd};
     }
 
     public static void main(String[] args) {
